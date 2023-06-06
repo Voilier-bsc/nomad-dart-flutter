@@ -11,115 +11,328 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: Scaffold(
+        backgroundColor: const Color(0xFF1F1F1F),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 80),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Image.network(
+                        'https://avatars.githubusercontent.com/u/70934639?v=4',
+                        fit: BoxFit.cover,
+                        width: 50,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "MONDAY 16",
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          day_num(
+                              day: "Today ",
+                              color: Colors.white.withOpacity(0.8)),
+                          const day_num(day: "· ", color: Color(0xFFB2257F)),
+                          const day_num(
+                            day: "17  ",
+                            color: Color(0xFF909090),
+                          ),
+                          const day_num(
+                            day: "18  ",
+                            color: Color(0xFF909090),
+                          ),
+                          const day_num(
+                            day: "19  ",
+                            color: Color(0xFF909090),
+                          ),
+                          const day_num(
+                            day: "20  ",
+                            color: Color(0xFF909090),
+                          ),
+                          const day_num(
+                            day: "21  ",
+                            color: Color(0xFF909090),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 570,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      children: [
+                        Card(
+                          day_1_1: "11",
+                          day_1_2: "30",
+                          day_2_1: "12",
+                          day_2_2: "20",
+                          todo_1: "DESIGN",
+                          todo_2: "MEETING",
+                          mem_1: "ALEX",
+                          mem_2: "HELENA",
+                          mem_3: "NANA",
+                          bgcolor: Color(0xFFFEF754),
+                          plus: false,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Card(
+                          day_1_1: "12",
+                          day_1_2: "35",
+                          day_2_1: "14",
+                          day_2_2: "10",
+                          todo_1: "DAILY",
+                          todo_2: "PROJECT",
+                          mem_1: "ME",
+                          mem_2: "RICHARD",
+                          mem_3: "CIRY",
+                          bgcolor: Color(0xFF9C6BCE),
+                          plus: true,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Card(
+                          day_1_1: "15",
+                          day_1_2: "00",
+                          day_2_1: "16",
+                          day_2_2: "30",
+                          todo_1: "WEEKLY",
+                          todo_2: "PLANNIG",
+                          mem_1: "DEN",
+                          mem_2: "NANA",
+                          mem_3: "MARK",
+                          bgcolor: Color(0xFFBCEE4B),
+                          plus: false,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class Card extends StatelessWidget {
+  final String day_1_1,
+      day_1_2,
+      day_2_1,
+      day_2_2,
+      todo_1,
+      todo_2,
+      mem_1,
+      mem_2,
+      mem_3;
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final Color bgcolor;
+  final bool plus;
+  const Card(
+      {super.key,
+      required this.day_1_1,
+      required this.day_1_2,
+      required this.day_2_1,
+      required this.day_2_2,
+      required this.todo_1,
+      required this.todo_2,
+      required this.mem_1,
+      required this.mem_2,
+      required this.mem_3,
+      required this.bgcolor,
+      required this.plus});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            // color: const Color(0xFFFEF754),
+            color: bgcolor,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      children: [
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          day_1_1,
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          day_1_2,
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          day_2_1,
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          day_2_2,
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          todo_1,
+                          style: const TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          todo_2,
+                          style: const TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              mem_1,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.5),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              mem_2,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.5),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              mem_3,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.5),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              plus ? "+4" : "",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.5),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ],
     );
+  }
+}
+
+class day_num extends StatelessWidget {
+  final String day;
+  final Color color;
+
+  const day_num({super.key, required this.day, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(day,
+        style: TextStyle(
+          color: color,
+          fontSize: 40,
+          fontWeight: FontWeight.w600,
+        ));
   }
 }
